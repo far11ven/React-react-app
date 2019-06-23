@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    value: this.props.counter.value,
+    //value: this.props.counter.value,
     imageUrl: "https://picsum.photos/200/300",
     tags: ["tag1", "tag2", "tag3"]
   };
@@ -12,23 +12,9 @@ class Counter extends Component {
     fontWeight: "bold"
   };
 
-  handleIncrement = () => {
-    console.log("clicked increment button", this);
-
-    this.setState({ value: this.state.value + 1 });
-  };
-
-  handleDecrement = () => {
-    console.log("clicked decrement button", this);
-
-    if (this.state.value > 0) {
-      this.setState({ value: this.state.value - 1 });
-    }
-  };
-
   getBadgeClasses() {
-    let classes = "badge m-7 badge-";
-    classes += this.state.value === 0 ? "warning" : "primary";
+    let classes = "badge m-8 badge-";
+    classes += this.props.counter.value === 0 ? "warning" : "primary";
     return classes;
   }
 
@@ -37,17 +23,17 @@ class Counter extends Component {
       <React.Fragment>
         {this.props.children}
         <span style={this.styles} className={this.getBadgeClasses()}>
-          {this.state.value}
+          {this.props.counter.value}
         </span>
         <button
-          onClick={this.handleIncrement}
+          onClick={() => this.props.onIncrement(this.props.counter)}
           className="btn btn-secondary btn-sm m-2"
         >
           Increment
         </button>
 
         <button
-          onClick={this.handleDecrement}
+          onClick={() => this.props.onDecrement(this.props.counter)}
           className="btn btn-secondary btn-sm m-2"
         >
           Decrement
