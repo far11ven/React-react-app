@@ -5,6 +5,7 @@ import "./App.css";
 
 class App extends Component {
   state = {
+    totalItems: 0,
     counters: [{ id: 0, value: 0 }]
   };
 
@@ -15,11 +16,12 @@ class App extends Component {
 
     countersNew[index] = { ...counter };
 
-    countersNew[index].value++;
+    ++countersNew[index].value;
 
     console.log("countersNew[index] :", countersNew[index]);
 
     this.setState({ counters: countersNew });
+    this.updateTotalItems();
   };
 
   handleDecrement = counter => {
@@ -31,9 +33,10 @@ class App extends Component {
     countersNew[index] = { ...counter };
 
     if (countersNew[index].value > 0) {
-      countersNew[index].value--;
+      --countersNew[index].value;
       this.setState({ counters: countersNew });
     }
+    this.updateTotalItems();
   };
 
   handleAdd = () => {
@@ -50,6 +53,7 @@ class App extends Component {
       countersNew.push({ id: 0, value: 0 });
     }
     this.setState({ counters: countersNew });
+    this.updateTotalItems();
   };
 
   handleReset = () => {
@@ -60,11 +64,13 @@ class App extends Component {
     });
 
     this.setState({ counters: countersNew });
+    this.updateTotalItems();
   };
 
   handleDelete = counterId => {
     const counters = this.state.counters.filter(c => c.id !== counterId);
     this.setState({ counters: counters });
+    this.updateTotalItems();
   };
 
   handleNavigate = counter => {
@@ -75,12 +81,20 @@ class App extends Component {
     console.log("Saving data in history", this.props.history);
   };
 
+  updateTotalItems = () => {
+    let i = 0;
+    this.state.counters.filter(c => {
+      i += c.value;
+      console.log("i", c.value);
+    });
+    console.log("final i", i);
+    this.setState({ totalItems: i });
+  };
+
   render() {
     return (
       <React.Fragment>
-        <NavBar
-          totalCounters={this.state.counters.filter(c => c.value > 0).length}
-        />
+        <NavBar totalCounters={this.state.totalItems} />
         <main className="container">
           <Counters
             counters={this.state.counters}
