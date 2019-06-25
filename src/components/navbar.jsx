@@ -11,6 +11,19 @@ class NavBar extends Component {
   };
 
   render() {
+    let totalItemsCount;
+
+    if (JSON.parse(localStorage.getItem("state")) !== null) {
+      console.log("Inside localstorage");
+      totalItemsCount = JSON.parse(localStorage.getItem("state")).totalItems;
+    } else if (this.props.totalItems !== null) {
+      console.log("Inside props", this.props.totalItems);
+      totalItemsCount = this.props.totalItems;
+    } else {
+      console.log("Inside 0");
+      totalItemsCount = 0;
+    }
+
     return (
       <nav className="navbar navbar-light bg-light">
         <Link className="navbar-brand" to="/">
@@ -27,8 +40,7 @@ class NavBar extends Component {
             <h5>
               Total Items :
               <span className="badge badge-pill badge-primary">
-                {this.props.totalItems ||
-                  JSON.parse(localStorage.getItem("state")).totalItems}
+                {totalItemsCount}
               </span>
             </h5>
           </Link>
