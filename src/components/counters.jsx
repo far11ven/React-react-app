@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Counter from "./counter";
 
 class Counters extends Component {
+  componentDidMount() {
+    console.log("Inside Counters Mount");
+  }
   render() {
     return (
       <div>

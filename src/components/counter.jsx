@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Counter extends Component {
   state = {
@@ -18,14 +19,15 @@ class Counter extends Component {
   }
 
   render() {
+    console.log(" Selected Counter", this.props.counter);
     return (
       <React.Fragment>
         <div className="container">
-          <div>
-            <a
-              href={"/items/" + this.props.counter.id}
-              onClick={() => this.props.onNavigate(this.props.counter)}
-            >
+          <Link
+            to={"/items/" + this.props.counter.id}
+            onClick={() => this.props.onNavigate(this.props.counter)}
+          >
+            <div>
               <img
                 alt=""
                 src={
@@ -34,8 +36,8 @@ class Counter extends Component {
                   "/300/150"
                 }
               />
-            </a>
-          </div>
+            </div>
+          </Link>
 
           <button
             onClick={() => this.props.onDecrement(this.props.counter)}
@@ -60,14 +62,12 @@ class Counter extends Component {
           >
             Delete
           </button>
-          <div>
-            <a
-              href={"/items/" + this.props.counter.id}
-              onClick={() => this.props.onNavigate(this.props.counter)}
-            >
-              {this.props.children}
-            </a>
-          </div>
+          <Link
+            to={"/items/" + this.props.counter.id}
+            onClick={() => this.props.onNavigate(this.props.counter)}
+          >
+            <div>{this.props.children}</div>
+          </Link>
         </div>
       </React.Fragment>
     );

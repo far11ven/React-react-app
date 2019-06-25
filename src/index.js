@@ -1,19 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import App from "./App";
-import CounterInfo from "./components/counterInfo";
+import Main from "./components/main";
+import Cart from "./components/cart";
+import Counters from "./components/counters";
+import Counter from "./components/counter";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 
 const rootElement = document.getElementById("root");
 const routing = (
   <Router>
-    <div>
-      <Route exact path="/" component={App} />
-      <Route path="/items/:counterId" component={CounterInfo} />
-    </div>
+    <Route exact path="/" component={App} />
+    <Route path="/cart" component={App} />
+    <Route path="/items" component={App} />
+    <Route path="/items/:id" component={App} />
   </Router>
 );
 
