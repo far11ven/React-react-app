@@ -14,7 +14,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Navbar
           totalItems={this.state.totalItems}
           onUpdateTotal={this.updateTotalItemCount}
@@ -23,7 +23,7 @@ class App extends Component {
           totalItems={this.state.totalItems}
           onUpdateTotal={this.updateTotalItemCount}
         />
-      </div>
+      </React.Fragment>
     );
   }
 }

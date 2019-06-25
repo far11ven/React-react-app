@@ -12,7 +12,7 @@ class Counters extends Component {
           onClick={this.props.onAdd}
           className="btn btn-primary btn-sm m-2"
         >
-          Add Item
+          Add Product
         </button>
         <button
           onClick={this.props.onReset}
@@ -20,6 +20,7 @@ class Counters extends Component {
         >
           RESET Qt.
         </button>
+        <hr />
         <div className="item-body">
           {this.props.counters.map(counter => (
             <Counter

@@ -38,6 +38,7 @@ class Counter extends Component {
               />
             </div>
           </Link>
+          <h5> Quantity : </h5>
 
           <button
             onClick={() => this.props.onDecrement(this.props.counter)}
@@ -68,6 +69,7 @@ class Counter extends Component {
           >
             <div>{this.props.children}</div>
           </Link>
+          <hr />
         </div>
       </React.Fragment>
     );
